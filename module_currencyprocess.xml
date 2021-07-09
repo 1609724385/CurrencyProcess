@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_currencyprocess" default="compile.module.currencyprocess">
+  <dirname property="module.currencyprocess.basedir" file="${ant.file.module_currencyprocess}"/>
+  
+  <property name="module.jdk.home.currencyprocess" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.currencyprocess" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.currencyprocess" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.currencyprocess" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="currencyprocess.output.dir" value="${module.currencyprocess.basedir}/target/classes"/>
+  <property name="currencyprocess.testoutput.dir" value="${module.currencyprocess.basedir}/target/test-classes"/>
+  
+  <path id="currencyprocess.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="currencyprocess.module.production.classpath">
+    <path refid="${module.jdk.classpath.currencyprocess}"/>
+  </path>
+  
+  <path id="currencyprocess.runtime.production.module.classpath">
+    <pathelement location="${currencyprocess.output.dir}"/>
+  </path>
+  
+  <path id="currencyprocess.module.classpath">
+    <path refid="${module.jdk.classpath.currencyprocess}"/>
+    <pathelement location="${currencyprocess.output.dir}"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-api:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.apiguardian:apiguardian-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.opentest4j:opentest4j:1.2.0.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-commons:1.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-params:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-engine:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-engine:1.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.20.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib:1.4.20.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-common:1.4.20.classpath"/>
+    <path refid="library.maven:_org.jetbrains:annotations:13.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20.classpath"/>
+  </path>
+  
+  <path id="currencyprocess.runtime.module.classpath">
+    <pathelement location="${currencyprocess.testoutput.dir}"/>
+    <pathelement location="${currencyprocess.output.dir}"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-api:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.apiguardian:apiguardian-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.opentest4j:opentest4j:1.2.0.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-commons:1.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-params:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-engine:5.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-engine:1.8.0-m1.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.20.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib:1.4.20.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-common:1.4.20.classpath"/>
+    <path refid="library.maven:_org.jetbrains:annotations:13.0.classpath"/>
+    <path refid="library.maven:_org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.currencyprocess">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.currencyprocess">
+    <patternset refid="excluded.from.module.currencyprocess"/>
+  </patternset>
+  
+  <path id="currencyprocess.module.sourcepath">
+    <dirset dir="${module.currencyprocess.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="currencyprocess.module.test.sourcepath">
+    <dirset dir="${module.currencyprocess.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.currencyprocess" depends="compile.module.currencyprocess.production,compile.module.currencyprocess.tests" description="Compile module CurrencyProcess"/>
+  
+  <target name="compile.module.currencyprocess.production" depends="register.custom.compilers" description="Compile module CurrencyProcess; production classes">
+    <mkdir dir="${currencyprocess.output.dir}"/>
+    <javac2 destdir="${currencyprocess.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.currencyprocess}/javac">
+      <compilerarg line="${compiler.args.currencyprocess}"/>
+      <bootclasspath refid="currencyprocess.module.bootclasspath"/>
+      <classpath refid="currencyprocess.module.production.classpath"/>
+      <src refid="currencyprocess.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.currencyprocess"/>
+    </javac2>
+    
+    <copy todir="${currencyprocess.output.dir}">
+      <fileset dir="${module.currencyprocess.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.currencyprocess.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.currencyprocess.tests" depends="register.custom.compilers,compile.module.currencyprocess.production" description="compile module CurrencyProcess; test classes" unless="skip.tests">
+    <mkdir dir="${currencyprocess.testoutput.dir}"/>
+    <javac2 destdir="${currencyprocess.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.currencyprocess}/javac">
+      <compilerarg line="${compiler.args.currencyprocess}"/>
+      <bootclasspath refid="currencyprocess.module.bootclasspath"/>
+      <classpath refid="currencyprocess.module.classpath"/>
+      <src refid="currencyprocess.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.currencyprocess"/>
+    </javac2>
+    
+    <copy todir="${currencyprocess.testoutput.dir}">
+      <fileset dir="${module.currencyprocess.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.currencyprocess" description="cleanup module">
+    <delete dir="${currencyprocess.output.dir}"/>
+    <delete dir="${currencyprocess.testoutput.dir}"/>
+  </target>
+</project>

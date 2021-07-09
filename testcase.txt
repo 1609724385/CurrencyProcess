@@ -1,0 +1,119 @@
+test case 1：
+    press enter key；
+return：
+    Input Error, Only 1 or 2 is permitted.
+
+test case 2：
+    press "3" and enter key；
+return：
+    Input Error, Only 1 or 2 is permitted.
+
+test case 3：
+    press "1" and enter key；
+    press "fadf" and enter key；
+return：
+    Please use 3 large characters for short name of currency.
+
+test case 4：
+    press "1" and enter key；
+    press "HKD 200" and enter key；
+    press "HKD " and enter key；
+return：
+    You should input according to the "currency amount" format,separate by one space..
+
+test case 5：
+    press "1" and enter key；
+    press "HKD 200" and enter key；
+    press "HKD 200" and enter key；
+    press "HKD  500" and enter key；
+return：
+    You should input according to the "currency amount" format,separate by one space..
+
+
+test case 6：
+    press "1" and enter key；
+    press "HKD 300" and enter key；
+    press "HKD -300" and enter key；
+    press "JPN 500" and enter key；
+    press "JPN 600" and enter key；
+    press "USD 700" and enter key；
+    press "USD 800" and enter key；
+    press "CNY 900" and enter key；
+    press "CNY 1000" and enter key；
+return one minute later：
+    CUR AMOUNT
+    USD 1500.0
+    JPN 1100.0
+    CNY 1900.0
+
+test case 7：
+        press "2" and enter key；
+        press "curr1.txt" and enter key；
+        the content of curr.txt not exist
+
+    return immidiatelly：
+        Input error,file not exist.
+
+test case 8：
+        press "2" and enter key；
+        press "curr2.txt" and enter key；
+        the content of curr1.txt
+            HKD 100
+            HKD 100
+            USDL 200
+            USD 200
+            JPN 30000
+            CNY 10000
+            CNY 50000
+            JPN 80000
+    return immidiatelly：
+        Currency type error in line 3
+
+test case 9：
+        press "2" and enter key；
+        press "curr3.txt" and enter key；
+        the content of curr1.txt
+            HKD 100
+            HKD 100
+            USD 200
+            USD w00
+            JPN 30000
+            CNY 10000
+            CNY 50000
+            JPN 80000
+    return immidiatelly：
+        The amount should be numeric in line 4
+
+test case 9：
+        press "2" and enter key；
+        press "curr4.txt" and enter key；
+        the content of curr1.txt
+            HKD 100
+            HKD 100
+            USD 200
+            USD 200
+            JPN
+            CNY 10000
+            CNY 50000
+            JPN 80000
+    return immidiatelly：
+        There's no currency amount in line 5
+
+ test case 11：
+         press "2" and enter key；
+         press "curr6.txt" and enter key；
+         the content of curr1.txt
+             HKD 100
+             HKD -100
+             USD 200
+             USD 200
+             JPN 30000
+             CNY 10000
+             CNY 50000
+             JPN 80000
+     return immidiatelly and one minute later：
+         CUR AMOUNT
+         USD 400.0
+         JPN 110000.0
+         CNY 60000.0
+     and we can also input currency later
